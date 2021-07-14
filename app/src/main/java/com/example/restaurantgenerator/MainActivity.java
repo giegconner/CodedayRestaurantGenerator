@@ -23,6 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RestaurantDb db;    // create a db, so users can add their restaurants into their list
+
     LinearLayout mainLinearLayout;
     LinearLayout restaurantLinearLayout;
     TextView restaurantTextView;
@@ -32,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // creates an instance of the database when the app launches
+        db = RestaurantDb.getInstance(this);
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDpj-s6hA4_FqJCryNiA53N7ewA8eufSKw&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < restaurants.length(); i++) {
                         JSONObject obj = restaurants.getJSONObject(i);
                         String restaurantName = obj.getString("name");
+                        String restaurantVicinity =obj.getString("vicinity");
                         restaurantLinearLayout = new LinearLayout(MainActivity.this);
                         restaurantLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
                         restaurantTextView = new TextView(MainActivity.this);
@@ -60,8 +68,16 @@ public class MainActivity extends AppCompatActivity {
                         addBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(getApplicationContext(), restaurantName + " clicked", Toast.LENGTH_SHORT).show();
-                                // add the restaurant info to the user's list
+
+                                // adds the chosen restaurant into the database
+                                if(db.chosenlist().findRestaurantByAddress(restaurantVicinity)){
+                                    Toast.makeText(getApplicationContext(), "The restaurant " + restaurantName + " at " + restaurantVicinity +
+                                            " is already on your list.", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(getApplicationContext(), restaurantName + " is added to your list", Toast.LENGTH_SHORT).show();
+                                    db.chosenlist().addRestaurant(new chosenList(restaurantName, restaurantVicinity));
+                                }
+
                             }
                         });
                         mainLinearLayout.addView(restaurantLinearLayout);
