@@ -2,6 +2,7 @@ package com.example.restaurantgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout restaurantLinearLayout;
     TextView restaurantTextView;
     Button addBtn;
+    Button readyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayout);
+        readyBtn = (Button)findViewById(R.id.readyBtn);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayout);
+
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray restaurants = (JSONArray)jsonObject.get("results");
@@ -78,5 +83,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         queue.add(stringRequest);
+
+        readyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Ready clicked", Toast.LENGTH_SHORT).show();
+                Intent userPicks = new Intent(MainActivity.this, UserPicks.class);
+                startActivity(userPicks);
+            }
+        });
     }
 }
