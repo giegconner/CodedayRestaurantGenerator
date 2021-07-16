@@ -28,15 +28,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout restaurantLinearLayout;
     TextView restaurantTextView;
     Button addBtn;
+    Button readyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // click listener for go back button in listed restaurants
         View listedGoBack = findViewById(R.id.listed_gobackBtn);
         listedGoBack.setOnClickListener(this); // unsure
+
+        mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayout);
+        readyBtn = (Button)findViewById(R.id.readyBtn);
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayout);
+
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray restaurants = (JSONArray)jsonObject.get("results");
@@ -83,6 +89,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         queue.add(stringRequest);
+
+        readyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Ready clicked", Toast.LENGTH_SHORT).show();
+                Intent userPicks = new Intent(MainActivity.this, UserPicks.class);
+                startActivity(userPicks);
+            }
+        });
     }
 
     public void onClick(View v) {
@@ -92,4 +107,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(i);
         }
     }
+
 }
