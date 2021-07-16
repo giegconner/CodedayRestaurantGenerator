@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         addBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
                                 // adds the chosen restaurant into the database
                                 if(db.chosenlist().findRestaurantByAddress(restaurantVicinity)){
                                     Toast.makeText(getApplicationContext(), "The restaurant " + restaurantName + " at " + restaurantVicinity +
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), restaurantName + " is added to your list", Toast.LENGTH_SHORT).show();
                                     db.chosenlist().addRestaurant(new chosenList(restaurantName, restaurantVicinity));
                                 }
-
                             }
                         });
                         mainLinearLayout.addView(restaurantLinearLayout);
