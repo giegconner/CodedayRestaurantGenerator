@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="30dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dip"
+        android:fontFamily="sans-serif-black"
+        android:text="MONCHIES"
+        android:textColor="#7E0D3B"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        >
+    </TextView>
+
+    <Button
+        android:id="@+id/init_find_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="425dp"
+        android:text="Find Place To Eat"
+        android:backgroundTint="#7E0D3B"
+        >
+    </Button>
+
+</LinearLayout>
