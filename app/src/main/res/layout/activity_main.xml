@@ -2,19 +2,21 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/mainLinearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
 
         </LinearLayout>
 
@@ -22,11 +24,29 @@
     </ScrollView>
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/listed_gobackBtn"
         android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
-        android:text="Go Back">
-
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="50dp"
+        android:text="Go Back"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#7E0D3B"
+        >
     </Button>
 
+    <Button
+        android:id="@+id/readyBtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginBottom="50dp"
+        android:text="Ready"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#7E0D3B"
+        >
+
+    </Button>
 </RelativeLayout>
+
+

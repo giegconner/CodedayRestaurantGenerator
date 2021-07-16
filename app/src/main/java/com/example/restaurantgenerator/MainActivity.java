@@ -2,6 +2,7 @@ package com.example.restaurantgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout mainLinearLayout;
     LinearLayout restaurantLinearLayout;
     TextView restaurantTextView;
@@ -33,8 +34,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // click listener for go back button in listed restaurants
+        View listedGoBack = findViewById(R.id.listed_gobackBtn);
+        listedGoBack.setOnClickListener(this); // unsure
+
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDpj-s6hA4_FqJCryNiA53N7ewA8eufSKw&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -78,5 +83,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         queue.add(stringRequest);
+    }
+
+    public void onClick(View v) {
+        if(v.getId() == R.id.listed_gobackBtn) {
+            // button will direct user to cover page(temporarily until categories is set up)
+            Intent i = new Intent(this, CoverPage.class);
+            startActivity(i);
+        }
     }
 }

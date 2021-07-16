@@ -13,23 +13,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dip"
         android:fontFamily="sans-serif-black"
-        android:text="MUNCHIES"
+        android:text="MONCHIES"
+        android:textColor="#7E0D3B"
         android:textSize="50dp"
         android:textStyle="bold"
         >
     </TextView>
 
-
-
     <Button
-        android:id="@+id/find_place"
+        android:id="@+id/init_find_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:layout_marginTop="450dip"
+        android:layout_marginTop="425dp"
         android:text="Find Place To Eat"
+        android:backgroundTint="#7E0D3B"
         >
-
     </Button>
 
 </LinearLayout>
