@@ -2,7 +2,6 @@ package com.example.restaurantgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private RestaurantDb db;    // create a db, so users can add their restaurants into their list
 
@@ -31,34 +30,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout restaurantLinearLayout;
     TextView restaurantTextView;
     Button addBtn;
-    Button readyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // creates an instance of the database when the app launches
         db = RestaurantDb.getInstance(this);
 
 
-        // click listener for go back button in listed restaurants
-        View listedGoBack = findViewById(R.id.listed_gobackBtn);
-        listedGoBack.setOnClickListener(this); // unsure
-
-        mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayout);
-        readyBtn = (Button)findViewById(R.id.readyBtn);
-
-
-
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDpj-s6hA4_FqJCryNiA53N7ewA8eufSKw&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                mainLinearLayout = (LinearLayout)findViewById(R.id.mainLinearLayout);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray restaurants = (JSONArray)jsonObject.get("results");
@@ -80,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         addBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+
                                 // adds the chosen restaurant into the database
                                 if(db.chosenlist().findRestaurantByAddress(restaurantVicinity)){
                                     Toast.makeText(getApplicationContext(), "The restaurant " + restaurantName + " at " + restaurantVicinity +
@@ -88,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     Toast.makeText(getApplicationContext(), restaurantName + " is added to your list", Toast.LENGTH_SHORT).show();
                                     db.chosenlist().addRestaurant(new chosenList(restaurantName, restaurantVicinity));
                                 }
+
                             }
                         });
                         mainLinearLayout.addView(restaurantLinearLayout);
@@ -104,24 +94,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         queue.add(stringRequest);
-
-        readyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Ready clicked", Toast.LENGTH_SHORT).show();
-                Intent userPicks = new Intent(MainActivity.this, UserPicks.class);
-                startActivity(userPicks);
-            }
-        });
     }
-
-    public void onClick(View v) {
-        if(v.getId() == R.id.listed_gobackBtn) {
-            // button will direct user to cover page(temporarily until categories is set up)
-            Intent i = new Intent(this, CoverPage.class);
-            startActivity(i);
-        }
-    }
-
-    }
-
+}
