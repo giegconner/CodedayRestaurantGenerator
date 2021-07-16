@@ -47,13 +47,6 @@
         android:backgroundTint="#7E0D3B"
         >
 
-        android:id="@+id/readyBtn"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Ready"
-        android:layout_alignParentBottom="true">
-
-
     </Button>
 </RelativeLayout>
 
