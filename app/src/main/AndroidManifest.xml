@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantGenerator">
         <activity android:name=".UserPicks"></activity>
-        <activity android:name=".CoverPage">
+        <activity android:name=".CoverPage"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
