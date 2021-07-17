@@ -20,15 +20,15 @@
         >
     </TextView>
 
-    <Button
-        android:id="@+id/init_find_place"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:layout_marginTop="425dp"
-        android:text="Find Place To Eat"
-        android:backgroundTint="#7E0D3B"
-        >
-    </Button>
+<!--    <Button-->
+<!--        android:id="@+id/init_find_place"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="sans-serif-black"-->
+<!--        android:layout_marginTop="425dp"-->
+<!--        android:text="Find Place To Eat"-->
+<!--        android:backgroundTint="#7E0D3B"-->
+<!--        >-->
+<!--    </Button>-->
 
 </LinearLayout>
