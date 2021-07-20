@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="300dp"
         android:text="Find Place To Eat"
         android:backgroundTint="#7E0D3B"
         >

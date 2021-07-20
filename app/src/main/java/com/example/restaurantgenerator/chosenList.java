@@ -31,4 +31,11 @@ public class chosenList {
     public String getRestaurantAddress(){return restaurantAddress;}
     public void setRestaurantAddress(String address){this.restaurantAddress = address;}
 
+    @Override
+    public String toString() {
+        String restaurant_name = getRestaurantName() + "\n" + getRestaurantAddress();
+
+        return restaurant_name;
+    }
+
 }
