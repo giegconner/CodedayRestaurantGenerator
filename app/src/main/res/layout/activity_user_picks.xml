@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UserPicks">
 
-    <TextView
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/choice_list"
         android:layout_width="match_parent"
-        android:text="User Picks"
-        android:textSize="20dp"
-        android:gravity="right">
-    </TextView>
-</LinearLayout>
+        android:layout_height="642dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/picks_gobackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="20dp"
+        android:text="Go Back"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#7E0D3B"
+        >
+
+    </Button>
+
+</RelativeLayout>

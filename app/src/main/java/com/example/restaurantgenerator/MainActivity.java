@@ -24,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private RestaurantDb db;    // create a db, so users can add their restaurants into their list
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         readyBtn.setOnClickListener(this);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDpj-s6hA4_FqJCryNiA53N7ewA8eufSKw&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + API.key +"&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
