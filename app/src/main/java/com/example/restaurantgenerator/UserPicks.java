@@ -3,7 +3,6 @@ package com.example.restaurantgenerator;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,14 +11,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class UserPicks extends AppCompatActivity implements View.OnClickListener{
+public class UserPicks extends AppCompatActivity implements View.OnClickListener {
 
     private RestaurantDb choicesdb; // library database
     private List<chosenList> choiceslist;
@@ -27,6 +26,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
     private ArrayAdapter<chosenList> choice_adapter;
 
     Button userGoBack;
+    Button randomizeBtn;
 
     LinearLayout userLinearLayout;
     LinearLayout choicesLinearLayout;
@@ -39,6 +39,9 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
 
         userGoBack = (Button)findViewById(R.id.picks_gobackBtn); // go back button
         userGoBack.setOnClickListener(this);
+
+        randomizeBtn = (Button)findViewById(R.id.picks_randomizeBtn); // randomize button
+        randomizeBtn.setOnClickListener(this);
 
         choiceListView = findViewById(R.id.choice_list);
         choicesdb = RestaurantDb.getInstance(this); // instance of database
@@ -77,6 +80,13 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         if(v.getId() == R.id.picks_gobackBtn) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        }
+        else if (v.getId() == R.id.picks_randomizeBtn) {
+            Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();
+            // display a popup
+            // the popup will show the random restaurant's name and two buttons
+            // one button will be titled 'Go Back'
+            // the other button will be titled 'Go'
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.restaurantgenerator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +14,7 @@ public class CoverPage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cover_page);
 
-        View findPlaceToEatButton = findViewById(R.id.init_find_place);
+        Button findPlaceToEatButton = (Button)findViewById(R.id.init_find_place);
         findPlaceToEatButton.setOnClickListener(this);
     }
 

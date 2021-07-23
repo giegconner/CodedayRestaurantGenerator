@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".UserPicks">
+    tools:context=".UserPicks"
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/choice_list"
@@ -30,13 +32,16 @@
 
     </Button>
 
-<!--    <Button-->
-<!--        android:id="@+id/picks_randomizeBtn"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:text="Randomize"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:backgroundTint="#7E0D3B">-->
-<!--    </Button>-->
+    <Button
+        android:id="@+id/picks_randomizeBtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="240dp"
+        android:layout_marginBottom="20dp"
+        android:text="Randomize"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#7E0D3B"
+        >
 
+    </Button>
 </RelativeLayout>
