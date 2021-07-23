@@ -14,14 +14,14 @@ public class CoverPage extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cover_page);
 
-//        Button findPlaceToEatButton = (Button)findViewById(R.id.init_find_place);
-//        findPlaceToEatButton.setOnClickListener(this);
+        Button findPlaceToEatButton = (Button)findViewById(R.id.init_find_place);
+        findPlaceToEatButton.setOnClickListener(this);
     }
 
     public void onClick(View v) {
-//        if(v.getId() == R.id.init_find_place) {
-//            Intent find_restaurant = new Intent(this, MainActivity.class);
-//            startActivity(find_restaurant);
-//        }
+        if(v.getId() == R.id.init_find_place) {
+            Intent find_restaurant = new Intent(this, MainActivity.class);
+            startActivity(find_restaurant);
+        }
     }
 }
