@@ -30,4 +30,13 @@
 
     </Button>
 
+<!--    <Button-->
+<!--        android:id="@+id/picks_randomizeBtn"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:text="Randomize"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:backgroundTint="#7E0D3B">-->
+<!--    </Button>-->
+
 </RelativeLayout>
