@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -87,6 +90,18 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
             // the popup will show the random restaurant's name and two buttons
             // one button will be titled 'Go Back'
             // the other button will be titled 'Go'
+            Random rand = new Random();
+            int upperLimit = choiceslist.size();
+            if (upperLimit >= 1) {
+                int i = rand.nextInt(upperLimit); // random index in choiceslist
+                chosenList restaurant = choiceslist.get(i);
+                chosenList randomRestaurant = choiceslist.get(i);
+                String randomRestaurantName = randomRestaurant.getRestaurantName();
+                String randomRestaurantAddress = randomRestaurant.getRestaurantAddress();
+                Log.d("restaurant name:", randomRestaurantName);
+                Log.d("restaurant address:", randomRestaurantAddress);
+            }
+
         }
     }
 }
