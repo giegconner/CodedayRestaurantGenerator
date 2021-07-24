@@ -87,21 +87,26 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         else if (v.getId() == R.id.picks_randomizeBtn) {
             Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();
             // display a popup
-            // the popup will show the random restaurant's name and two buttons
-            // one button will be titled 'Go Back'
+            // the popup will show the random restaurant's name and address along with two buttons
+            // one button will be titled 'Cancel'
             // the other button will be titled 'Go'
             Random rand = new Random();
             int upperLimit = choiceslist.size();
             if (upperLimit >= 1) {
-                int i = rand.nextInt(upperLimit); // random index in choiceslist
+                int i = rand.nextInt(upperLimit); // random index from 0 to upperLimit-1
                 chosenList restaurant = choiceslist.get(i);
                 chosenList randomRestaurant = choiceslist.get(i);
                 String randomRestaurantName = randomRestaurant.getRestaurantName();
                 String randomRestaurantAddress = randomRestaurant.getRestaurantAddress();
                 Log.d("restaurant name:", randomRestaurantName);
                 Log.d("restaurant address:", randomRestaurantAddress);
+                openDialog(randomRestaurant);
             }
-
         }
+    }
+
+    public void openDialog(chosenList restaurant) {
+        ExampleDialog exampleDialog = new ExampleDialog(restaurant);
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 }
