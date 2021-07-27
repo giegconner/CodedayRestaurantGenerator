@@ -25,8 +25,8 @@ public interface choseListDao {
     long[] insertRestaurant(chosenList... chosenLists);
 
     // Will delete any restaurant with the inputted name (JUST FOR TESTING PURPOSES)
-    @Query("DELETE from chosenRestaurants where restaurant_name = :restaurantName")
-    void deleteByName(String restaurantName);
+    @Query("DELETE from chosenRestaurants where address = :restaurantAddress")
+    void deleteByAddress(String restaurantAddress);
 
     @Insert
     void addRestaurant(chosenList chosenlist);

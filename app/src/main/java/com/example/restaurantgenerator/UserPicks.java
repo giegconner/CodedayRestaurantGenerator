@@ -30,9 +30,10 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
 
     Button userGoBack;
     Button randomizeBtn;
+    Button deleteBtn;
 
-    LinearLayout userLinearLayout;
-    LinearLayout choicesLinearLayout;
+    LinearLayout mainLinearLayout;
+    LinearLayout restaurantListLinearLayout;
     TextView choicesTextView;
 
     @Override
@@ -46,36 +47,37 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         randomizeBtn = (Button)findViewById(R.id.picks_randomizeBtn); // randomize button
         randomizeBtn.setOnClickListener(this);
 
-        choiceListView = findViewById(R.id.choice_list);
         choicesdb = RestaurantDb.getInstance(this); // instance of database
 
         choiceslist = choicesdb.chosenlist().getAllRestaurants(); // will get all restaurants from database
 
-        choice_adapter = new ArrayAdapter<>(this, R.layout.activity_test_choice, R.id.t_choice, choiceslist);
-        choiceListView.setAdapter(choice_adapter);
+        mainLinearLayout = findViewById(R.id.mainLinearLayout);
+        for(int i=0; i < choicesdb.chosenlist().count(); i++){
+            String displayRestaurantName = choiceslist.get(i).getRestaurantName();
+            String displayRestaurantAddress = choiceslist.get(i).getRestaurantAddress();
+            restaurantListLinearLayout = new LinearLayout(UserPicks.this);
+            restaurantListLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+            choicesTextView = new TextView(UserPicks.this);
+            choicesTextView.setText(displayRestaurantName);
+            deleteBtn = new Button(UserPicks.this);
+            deleteBtn.setText("Delete");
+            deleteBtn.setWidth(10);
 
+            restaurantListLinearLayout.addView(choicesTextView);
+            restaurantListLinearLayout.addView(deleteBtn);
 
-//        restaurant_list = new ArrayList<String>();
-//        restaurant_list.add("");
-
-
-
-////        userLinearLayout = (LinearLayout)findViewById(R.id.userLinearLayout);
-//
-//        for(int i = 0; i < choiceslist.size(); i++) {
-//
-//            choicesLinearLayout = new LinearLayout(UserPicks.this);
-//            choicesLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-//            choicesTextView = new TextView(UserPicks.this);
-//
-//            choicesTextView.setText(choiceslist.get(i).getRestaurantName());
-//        }
-////        choicesTextView.setText(choiceslist.get());
-//
-//        choicesLinearLayout.addView(choicesTextView);
-
-
-
+            deleteBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    if(choicesdb.chosenlist().findRestaurantByAddress(displayRestaurantAddress)){
+                        choicesdb.chosenlist().deleteByAddress(displayRestaurantAddress);
+                        Intent reload = new Intent(UserPicks.this, UserPicks.class);
+                        startActivity(reload);
+                    }
+                }
+            });
+            mainLinearLayout.addView(restaurantListLinearLayout);
+        }
     }
 
     @Override
