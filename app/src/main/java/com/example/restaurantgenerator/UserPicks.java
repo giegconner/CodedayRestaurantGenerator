@@ -22,19 +22,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class UserPicks extends AppCompatActivity implements View.OnClickListener {
-
     private RestaurantDb choicesdb; // library database
     private List<chosenList> choiceslist;
     private ListView choiceListView;
     private ArrayAdapter<chosenList> choice_adapter;
-
     Button userGoBack;
     Button randomizeBtn;
-    Button deleteBtn;
-
-    LinearLayout mainLinearLayout;
-    LinearLayout restaurantListLinearLayout;
-    TextView choicesTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +36,6 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
 
         userGoBack = (Button)findViewById(R.id.picks_gobackBtn); // go back button
         userGoBack.setOnClickListener(this);
-
         randomizeBtn = (Button)findViewById(R.id.picks_randomizeBtn); // randomize button
         randomizeBtn.setOnClickListener(this);
 
@@ -51,34 +43,26 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
 
         choiceslist = choicesdb.chosenlist().getAllRestaurants(); // will get all restaurants from database
 
-        mainLinearLayout = findViewById(R.id.mainLinearLayout);
-        for(int i=0; i < choicesdb.chosenlist().count(); i++){
-            String displayRestaurantName = choiceslist.get(i).getRestaurantName();
-            String displayRestaurantAddress = choiceslist.get(i).getRestaurantAddress();
-            restaurantListLinearLayout = new LinearLayout(UserPicks.this);
-            restaurantListLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-            choicesTextView = new TextView(UserPicks.this);
-            choicesTextView.setText(displayRestaurantName);
-            deleteBtn = new Button(UserPicks.this);
-            deleteBtn.setText("Delete");
-            deleteBtn.setWidth(10);
+        ArrayList<String> list = new ArrayList<String>(); // not using this
+        list.add(String.valueOf(choicesdb.chosenlist().getAllRestaurants()));
 
-            restaurantListLinearLayout.addView(choicesTextView);
-            restaurantListLinearLayout.addView(deleteBtn);
+        // instantiate custom adapter
+        MyCustomAdapter adapter = new MyCustomAdapter(list, this);
 
-            deleteBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
-                    if(choicesdb.chosenlist().findRestaurantByAddress(displayRestaurantAddress)){
-                        choicesdb.chosenlist().deleteByAddress(displayRestaurantAddress);
-                        Intent reload = new Intent(UserPicks.this, UserPicks.class);
-                        startActivity(reload);
-                    }
-                }
-            });
-            mainLinearLayout.addView(restaurantListLinearLayout);
-        }
+
+//        choiceListView = findViewById(R.id.choice_list);
+
+
+        choice_adapter = new ArrayAdapter<>(this, R.layout.activity_test_choice, R.id.t_choice, choiceslist);
+
+        // handle listview and assign adapter
+        ListView lView = (ListView)findViewById(R.id.choice_list);
+        lView.setAdapter(choice_adapter);
+
+//        choiceListView.setAdapter(choice_adapter);
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -89,6 +73,8 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         else if (v.getId() == R.id.picks_randomizeBtn) {
             Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();
             // display a popup
+            // the popup will show the random restaurant's name and two buttons
+            // one button will be titled 'Go Back'
             // the popup will show the random restaurant's name and address along with two buttons
             // one button will be titled 'Cancel'
             // the other button will be titled 'Go'
@@ -104,6 +90,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
                 Log.d("restaurant address:", randomRestaurantAddress);
                 openDialog(randomRestaurant);
             }
+
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.restaurantgenerator;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         addBtn = new Button(MainActivity.this);
                         addBtn.setText("Add");
                         addBtn.setWidth(3);
+                        restaurantTextView.setTextSize(15);
+                        restaurantTextView.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD_ITALIC);
 
                         restaurantLinearLayout.addView(restaurantTextView);
                         restaurantLinearLayout.addView(addBtn);
