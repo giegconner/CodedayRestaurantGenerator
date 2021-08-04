@@ -57,6 +57,9 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
             startActivity(intent);
         }else if (v.getId() == R.id.picks_randomizeBtn) {
             Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();
+            // grabs the list again, in-case any changes have been made to the database
+            choiceslist = choicesdb.chosenlist().getAllRestaurants();
+
             // display a popup
             // the popup will show the random restaurant's name and two buttons
             // one button will be titled 'Go Back'
@@ -64,7 +67,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
             // one button will be titled 'Cancel'
             // the other button will be titled 'Go'
             Random rand = new Random();
-            int upperLimit = choicesdb.chosenlist().count();
+            int upperLimit = choiceslist.size();
             if (upperLimit >= 1) {
                 int i = rand.nextInt(upperLimit); // random index from 0 to upperLimit-1
                 chosenList restaurant = choiceslist.get(i);
@@ -74,6 +77,8 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
                 Log.d("restaurant name:", randomRestaurantName);
                 Log.d("restaurant address:", randomRestaurantAddress);
                 openDialog(randomRestaurant);
+            }else{
+                openDialog("Please select at LEAST 1 place to eat.");
             }
 
         }
@@ -81,6 +86,12 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
 
     public void openDialog(chosenList restaurant) {
         ExampleDialog exampleDialog = new ExampleDialog(restaurant);
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+    }
+
+
+    public void openDialog(String restaurantString){
+        ExampleDialog exampleDialog = new ExampleDialog(restaurantString, this);
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 }
