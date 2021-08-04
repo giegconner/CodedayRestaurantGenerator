@@ -2,30 +2,21 @@ package com.example.restaurantgenerator;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import android.widget.Button;
 import android.widget.Toast;
 
 public class UserPicks extends AppCompatActivity implements View.OnClickListener {
     private RestaurantDb choicesdb; // library database
     private List<chosenList> choiceslist;
     private ListView choiceListView;
-    private ArrayAdapter<chosenList> choice_adapter;
     Button userGoBack;
     Button randomizeBtn;
 
@@ -43,34 +34,28 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
 
         choiceslist = choicesdb.chosenlist().getAllRestaurants(); // will get all restaurants from database
 
-        ArrayList<String> list = new ArrayList<String>(); // not using this
-        list.add(String.valueOf(choicesdb.chosenlist().getAllRestaurants()));
+        // create an arrayList to store the restaurant's information, and display the user's chosen restaurants
+        ArrayList<String> list = new ArrayList<String>();
+        for(int i=0; i < choicesdb.chosenlist().count(); i++){
+            String restaurant = choiceslist.get(i).getRestaurantName() + "\n" + choiceslist.get(i).getRestaurantAddress();
+            list.add(restaurant);
+        }
 
         // instantiate custom adapter
         MyCustomAdapter adapter = new MyCustomAdapter(list, this);
 
-
-//        choiceListView = findViewById(R.id.choice_list);
-
-
-        choice_adapter = new ArrayAdapter<>(this, R.layout.activity_test_choice, R.id.t_choice, choiceslist);
-
         // handle listview and assign adapter
         ListView lView = (ListView)findViewById(R.id.choice_list);
-        lView.setAdapter(choice_adapter);
+        lView.setAdapter(adapter);
 
-//        choiceListView.setAdapter(choice_adapter);
     }
-
-
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.picks_gobackBtn) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }
-        else if (v.getId() == R.id.picks_randomizeBtn) {
+        }else if (v.getId() == R.id.picks_randomizeBtn) {
             Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();
             // display a popup
             // the popup will show the random restaurant's name and two buttons
@@ -79,7 +64,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
             // one button will be titled 'Cancel'
             // the other button will be titled 'Go'
             Random rand = new Random();
-            int upperLimit = choiceslist.size();
+            int upperLimit = choicesdb.chosenlist().count();
             if (upperLimit >= 1) {
                 int i = rand.nextInt(upperLimit); // random index from 0 to upperLimit-1
                 chosenList restaurant = choiceslist.get(i);

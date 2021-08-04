@@ -22,6 +22,4 @@ public abstract class RestaurantDb extends RoomDatabase{
         }
         return sInstance;
     }
-
-
 }
