@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapter {
+public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapter{
 
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
@@ -72,8 +72,11 @@ public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapte
                     Toast.makeText(context.getApplicationContext(), "The restaurant " + restaurantParts[0]
                             + " has been added to your list.", Toast.LENGTH_SHORT).show();
                 }
+                list.remove(position);
+                notifyDataSetChanged();
             }
         });
+
 
         return view;
     }

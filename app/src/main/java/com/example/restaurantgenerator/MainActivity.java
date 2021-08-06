@@ -20,7 +20,6 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import java.util.ArrayList;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private RestaurantDb db;    // create a db, so users can add their restaurants into their list
@@ -58,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     JSONArray restaurants = (JSONArray)jsonObject.get("results");
                     for (int i = 0; i < restaurants.length(); i++) {
                         JSONObject obj = restaurants.getJSONObject(i);
+                        if(db.chosenlist().findRestaurantByAddress(obj.getString("vicinity"))){
+                            continue;
+                        }
                         String restaurantName = obj.getString("name");
                         String restaurantVicinity =obj.getString("vicinity");
                         String restaurant = restaurantName +"\n" + restaurantVicinity;

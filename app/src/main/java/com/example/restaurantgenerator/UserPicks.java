@@ -89,7 +89,6 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
-
     public void openDialog(String restaurantString){
         ExampleDialog exampleDialog = new ExampleDialog(restaurantString, this);
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
