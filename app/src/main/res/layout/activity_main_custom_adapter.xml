@@ -22,6 +22,9 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="20dp"
+        android:maxWidth="20dp"
         android:text="Add to list"
         android:textStyle="italic"/>
 
