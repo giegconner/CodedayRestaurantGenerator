@@ -1,6 +1,7 @@
 package com.example.restaurantgenerator;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,8 @@ public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapte
                     Toast.makeText(context.getApplicationContext(), "The restaurant " + restaurantParts[0] +
                             " at " + restaurantParts[1] + " is already on your list.", Toast.LENGTH_SHORT).show();
                 }else{
-                    chosenList newRestaurant = new chosenList(restaurantParts[0], restaurantParts[1]);
+                    chosenList newRestaurant = new chosenList(restaurantParts[0], restaurantParts[1],
+                            Double.valueOf(restaurantParts[2]), Double.valueOf(restaurantParts[3]));
                     choicesdb.chosenlist().addRestaurant(newRestaurant);
                     Toast.makeText(context.getApplicationContext(), "The restaurant " + restaurantParts[0]
                             + " has been added to your list.", Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class ExampleDialog extends AppCompatDialogFragment {
         if(restaurantString.equals("none")){
             String restaurantName = this.restaurant.getRestaurantName();
             String restaurantAddress = this.restaurant.getRestaurantAddress();
+            String restaurantLatitude = String.valueOf(this.restaurant.getRestaurantLatitude());
+            String restaurantLongitude = String.valueOf(this.restaurant.getRestaurantLongitude());
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Restaurant chosen!")
                     .setMessage("\n" + restaurantName + "\n" + restaurantAddress + "\n")
@@ -44,6 +47,10 @@ public class ExampleDialog extends AppCompatDialogFragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Log.d("Redirect to:", "routing screen");
+                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + restaurantLatitude + "," + restaurantLongitude);
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+                            startActivity(mapIntent);
                         }
                     });
             return builder.create();

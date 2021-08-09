@@ -37,7 +37,8 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         // create an arrayList to store the restaurant's information, and display the user's chosen restaurants
         ArrayList<String> list = new ArrayList<String>();
         for(int i=0; i < choicesdb.chosenlist().count(); i++){
-            String restaurant = choiceslist.get(i).getRestaurantName() + "\n" + choiceslist.get(i).getRestaurantAddress();
+            String restaurant = choiceslist.get(i).getRestaurantName() + "\n" + choiceslist.get(i).getRestaurantAddress() + "\n" +
+                    choiceslist.get(i).getRestaurantLatitude() + "\n" + choiceslist.get(i).getRestaurantLongitude();
             list.add(restaurant);
         }
 
