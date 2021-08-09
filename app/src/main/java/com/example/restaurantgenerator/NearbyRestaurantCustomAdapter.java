@@ -14,17 +14,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapter{
+public class NearbyRestaurantCustomAdapter extends BaseAdapter implements ListAdapter{
 
-    private ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> list_coords = new ArrayList<>();
     private Context context;
 
     private RestaurantDb choicesdb;
     private List<chosenList> choicesList;
 
-    public MainActivityCustomAdapter(ArrayList<String> list, Context context) {
+    public NearbyRestaurantCustomAdapter(ArrayList<String> list_coords, ArrayList<String> list, Context context) {
         this.list = list;
         this.context = context;
+        this.list_coords = list_coords;
         choicesdb = RestaurantDb.getInstance(context);
     }
 
@@ -53,6 +55,9 @@ public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapte
             view = inflater.inflate(R.layout.activity_nearby_restaurants_custom_adapter, null);
         }
 
+        String[] restaurantParts = list.get(position).split("\n");
+        String[] restaurantCoords = list_coords.get(position).split("\n");
+
         // handle textview and display string list
         TextView listItemText = (TextView)view.findViewById(R.id.restaurant_list);
         listItemText.setText(list.get(position));
@@ -63,13 +68,12 @@ public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapte
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String[] restaurantParts = list.get(position).split("\n");
                 if(choicesdb.chosenlist().findRestaurantByAddress(restaurantParts[1])){
                     Toast.makeText(context.getApplicationContext(), "The restaurant " + restaurantParts[0] +
                             " at " + restaurantParts[1] + " is already on your list.", Toast.LENGTH_SHORT).show();
                 }else{
                     chosenList newRestaurant = new chosenList(restaurantParts[0], restaurantParts[1],
-                            Double.valueOf(restaurantParts[2]), Double.valueOf(restaurantParts[3]));
+                            Double.valueOf(restaurantCoords[0]), Double.valueOf(restaurantCoords[1]));
                     choicesdb.chosenlist().addRestaurant(newRestaurant);
                     Toast.makeText(context.getApplicationContext(), "The restaurant " + restaurantParts[0]
                             + " has been added to your list.", Toast.LENGTH_SHORT).show();

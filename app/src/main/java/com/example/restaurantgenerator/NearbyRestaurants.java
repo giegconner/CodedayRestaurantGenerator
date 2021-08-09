@@ -2,8 +2,8 @@ package com.example.restaurantgenerator;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,7 +25,8 @@ import java.util.ArrayList;
 public class NearbyRestaurants extends AppCompatActivity implements View.OnClickListener {
 
     private RestaurantDb db;    // create a db, so users can add their restaurants into their list
-    private ArrayList<String> restaurant_List = new ArrayList<String>();
+    private ArrayList<String> restaurant_List = new ArrayList<>();
+    private ArrayList<String> restaurantCoords = new ArrayList<>();
     private Context context = this;
 
     Button listedGoBack;
@@ -59,18 +60,20 @@ public class NearbyRestaurants extends AppCompatActivity implements View.OnClick
                     JSONArray restaurants = (JSONArray)jsonObject.get("results");
                     for (int i = 0; i < restaurants.length(); i++) {
                         JSONObject obj = restaurants.getJSONObject(i);
-                        /*if(db.chosenlist().findRestaurantByAddress(obj.getString("vicinity"))){
+                        if(db.chosenlist().findRestaurantByAddress(obj.getString("vicinity"))){
                             continue;
-                        }*/
+                        }
                         String restaurantName = obj.getString("name");
                         String restaurantVicinity = obj.getString("vicinity");
                         Double restaurantLatitude = obj.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                         Double restaurantLongitude = obj.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
-                        String restaurant = restaurantName + "\n" + restaurantVicinity + "\n" + restaurantLatitude + "\n" + restaurantLongitude;
+                        String restaurant = restaurantName + "\n" + restaurantVicinity;
+                        String restaurant_coords = restaurantLatitude + "\n" + restaurantLongitude;
                         restaurant_List.add(restaurant);
+                        restaurantCoords.add(restaurant_coords);
                     }
                     // create our adapter, fill the adapter, and list the adapter's content
-                    MainActivityCustomAdapter adapter = new MainActivityCustomAdapter(restaurant_List, context);
+                    NearbyRestaurantCustomAdapter adapter = new NearbyRestaurantCustomAdapter(restaurantCoords, restaurant_List, context);
 
                     ListView lView = (ListView)findViewById(R.id.restaurantList);
                     lView.setAdapter(adapter);

@@ -17,6 +17,8 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
     private RestaurantDb choicesdb; // library database
     private List<chosenList> choiceslist;
     private ListView choiceListView;
+    private ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<String> list_coords = new ArrayList<>();
     Button userGoBack;
     Button randomizeBtn;
 
@@ -35,15 +37,16 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         choiceslist = choicesdb.chosenlist().getAllRestaurants(); // will get all restaurants from database
 
         // create an arrayList to store the restaurant's information, and display the user's chosen restaurants
-        ArrayList<String> list = new ArrayList<String>();
+
         for(int i=0; i < choicesdb.chosenlist().count(); i++){
-            String restaurant = choiceslist.get(i).getRestaurantName() + "\n" + choiceslist.get(i).getRestaurantAddress() + "\n" +
-                    choiceslist.get(i).getRestaurantLatitude() + "\n" + choiceslist.get(i).getRestaurantLongitude();
+            String restaurant = choiceslist.get(i).getRestaurantName() + "\n" + choiceslist.get(i).getRestaurantAddress();
+            String restaurantCoords = choiceslist.get(i).getRestaurantLatitude() + "\n" + choiceslist.get(i).getRestaurantLongitude();
             list.add(restaurant);
+            list_coords.add(restaurantCoords);
         }
 
         // instantiate custom adapter
-        MyCustomAdapter adapter = new MyCustomAdapter(list, this);
+        MyCustomAdapter adapter = new MyCustomAdapter(list_coords, list, this);
 
         // handle listview and assign adapter
         ListView lView = (ListView)findViewById(R.id.choice_list);

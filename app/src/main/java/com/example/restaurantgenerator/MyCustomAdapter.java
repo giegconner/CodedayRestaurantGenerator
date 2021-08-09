@@ -16,13 +16,15 @@ import java.util.List;
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
     private ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<String> list_coords = new ArrayList<>();
     private Context context;
 
     private RestaurantDb choicesdb;
     private List<chosenList> choicesList;
 
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
+    public MyCustomAdapter(ArrayList<String> list_coords, ArrayList<String> list, Context context) {
         this.list = list;
+        this.list_coords = list_coords;
         this.context = context;
         choicesdb = RestaurantDb.getInstance(context);
     }
@@ -52,6 +54,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.activity_mycustomadapter, null);
         }
 
+        String[] restaurantParts = list.get(position).split("\n");
+        String[] restaurantCoords = list_coords.get(position).split("\n");
+
         // handle textview and display string list
         TextView listItemText = (TextView)view.findViewById(R.id.item_list);
         listItemText.setText(list.get(position));
@@ -63,7 +68,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-                String[] restaurantParts = list.get(position).split("\n");
+
                 if(choicesdb.chosenlist().findRestaurantByAddress(restaurantParts[1])){
                     choicesdb.chosenlist().deleteByAddress(restaurantParts[1]);
                 }
