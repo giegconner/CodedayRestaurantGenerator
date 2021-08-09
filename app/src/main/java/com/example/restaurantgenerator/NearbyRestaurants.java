@@ -2,6 +2,7 @@ package com.example.restaurantgenerator;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -58,12 +59,14 @@ public class NearbyRestaurants extends AppCompatActivity implements View.OnClick
                     JSONArray restaurants = (JSONArray)jsonObject.get("results");
                     for (int i = 0; i < restaurants.length(); i++) {
                         JSONObject obj = restaurants.getJSONObject(i);
-                        if(db.chosenlist().findRestaurantByAddress(obj.getString("vicinity"))){
+                        /*if(db.chosenlist().findRestaurantByAddress(obj.getString("vicinity"))){
                             continue;
-                        }
+                        }*/
                         String restaurantName = obj.getString("name");
-                        String restaurantVicinity =obj.getString("vicinity");
-                        String restaurant = restaurantName +"\n" + restaurantVicinity;
+                        String restaurantVicinity = obj.getString("vicinity");
+                        Double restaurantLatitude = obj.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
+                        Double restaurantLongitude = obj.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
+                        String restaurant = restaurantName + "\n" + restaurantVicinity + "\n" + restaurantLatitude + "\n" + restaurantLongitude;
                         restaurant_List.add(restaurant);
                     }
                     // create our adapter, fill the adapter, and list the adapter's content
