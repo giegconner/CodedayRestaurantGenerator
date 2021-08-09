@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="55dp"
         android:layout_marginBottom="20dp"
-        android:text="Go Back"
+        android:text="@string/userpicks_gobackBtn"
         android:layout_alignParentBottom="true"
         android:backgroundTint="#7E0D3B"
         >
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="240dp"
         android:layout_marginBottom="20dp"
-        android:text="Randomize"
+        android:text="@string/userpicks_randomizeBtn"
         android:layout_alignParentBottom="true"
         android:backgroundTint="#7E0D3B"
         >

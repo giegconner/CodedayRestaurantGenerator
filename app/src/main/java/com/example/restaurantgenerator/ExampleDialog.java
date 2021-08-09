@@ -54,7 +54,7 @@ public class ExampleDialog extends AppCompatDialogFragment {
                     .setNegativeButton("Fill up List", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent l = new Intent(context, MainActivity.class);
+                            Intent l = new Intent(context, NearbyRestaurants.class);
                             startActivity(l);
                         }
                     });

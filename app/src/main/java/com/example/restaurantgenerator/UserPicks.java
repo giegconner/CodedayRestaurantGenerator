@@ -53,7 +53,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.picks_gobackBtn) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, NearbyRestaurants.class);
             startActivity(intent);
         }else if (v.getId() == R.id.picks_randomizeBtn) {
             Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();

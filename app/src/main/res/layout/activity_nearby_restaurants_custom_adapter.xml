@@ -25,7 +25,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:maxWidth="20dp"
-        android:text="Add to list"
+        android:text="@string/nearby_adapter_add"
         android:textStyle="italic"/>
 
 </RelativeLayout>

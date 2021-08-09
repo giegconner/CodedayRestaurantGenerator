@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="30dp"
-    >
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dip"
-        android:fontFamily="sans-serif-black"
-        android:text="MONCHIES"
-        android:textColor="#7E0D3B"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        >
-    </TextView>
+    <ListView
+        android:id="@+id/restaurantList"
+        android:layout_width="match_parent"
+        android:layout_height="642dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp">
+
+    </ListView>
 
     <Button
-        android:id="@+id/init_find_place"
-        android:layout_width="match_parent"
+
+        android:id="@+id/listed_gobackBtn"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:layout_marginTop="300dp"
-        android:text="Find Place To Eat"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/nearby_goBackBtn"
+        android:layout_alignParentBottom="true"
         android:backgroundTint="#7E0D3B"
         >
     </Button>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/readyBtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/nearby_readyBtn"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#7E0D3B"
+        >
+
+    </Button>
+</RelativeLayout>
+
+

@@ -2,6 +2,24 @@
     <string name="app_name">RestaurantGenerator</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <!--    Cover page -->
+    <string name="main_name">MONCHIES</string>
+    <string name="main_find_a_place">Find A Place To Eat</string>
+
+    <!--    Nearby Restaurants Page -->
+    <string name="nearby_goBackBtn">Go Back</string>
+    <string name="nearby_readyBtn">Ready</string>
+
+    <!--    User Picks page -->
+    <string name="userpicks_gobackBtn">Go Back</string>
+    <string name="userpicks_randomizeBtn">Randomize</string>
+
+    <!--    Nearby Restaurants Custom Adapter -->
+    <string name="nearby_adapter_add">Add To List</string>
+
+    <!--   User Picks Custom Adapter -->
+    <string name="userpicks_adapter_delete">Delete From List</string>
+
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

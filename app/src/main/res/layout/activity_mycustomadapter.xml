@@ -25,7 +25,7 @@
         android:layout_marginStart="20dp"
         android:maxWidth="20dp"
         android:layout_marginRight="5dp"
-        android:text="Delete from list"
+        android:text="@string/userpicks_adapter_delete"
         android:textStyle="italic"/>
 
 </RelativeLayout>

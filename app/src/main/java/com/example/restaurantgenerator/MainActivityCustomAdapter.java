@@ -49,7 +49,7 @@ public class MainActivityCustomAdapter extends BaseAdapter implements ListAdapte
 
         if(view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.activity_main_custom_adapter, null);
+            view = inflater.inflate(R.layout.activity_nearby_restaurants_custom_adapter, null);
         }
 
         // handle textview and display string list
