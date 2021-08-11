@@ -28,6 +28,8 @@ public class NearbyRestaurants extends AppCompatActivity implements View.OnClick
     private ArrayList<String> restaurant_List = new ArrayList<>();
     private ArrayList<String> restaurantCoords = new ArrayList<>();
     private Context context = this;
+    private String radiusDistance;
+
 
     Button listedGoBack;
     Button readyBtn;
@@ -46,10 +48,12 @@ public class NearbyRestaurants extends AppCompatActivity implements View.OnClick
         readyBtn = (Button)findViewById(R.id.readyBtn);
         readyBtn.setOnClickListener(this);
 
-
+        Intent intent = getIntent();
+        radiusDistance = intent.getStringExtra("radius");
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + API.key +"&location=36.66717694044335,-121.65614460655894&radius=16000&type=restaurant";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + API.key +
+                "&location=36.66717694044335,-121.65614460655894&radius=" + radiusDistance + "&type=restaurant";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -99,6 +103,7 @@ public class NearbyRestaurants extends AppCompatActivity implements View.OnClick
         }else if(v.getId() == R.id.readyBtn){
             Toast.makeText(getApplicationContext(), "Ready clicked", Toast.LENGTH_SHORT).show();
             Intent userPicks = new Intent(NearbyRestaurants.this, UserPicks.class);
+            userPicks.putExtra("radius", radiusDistance);
             startActivity(userPicks);
         }
     }

@@ -18,6 +18,7 @@
         >
     </TextView>
 
+
     <Button
         android:id="@+id/find_a_place"
         android:layout_width="match_parent"

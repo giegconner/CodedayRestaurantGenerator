@@ -19,6 +19,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
     private ListView choiceListView;
     private ArrayList<String> list = new ArrayList<String>();
     private ArrayList<String> list_coords = new ArrayList<>();
+    private String radiusDistance;
     Button userGoBack;
     Button randomizeBtn;
 
@@ -35,6 +36,9 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         choicesdb = RestaurantDb.getInstance(this); // instance of database
 
         choiceslist = choicesdb.chosenlist().getAllRestaurants(); // will get all restaurants from database
+
+        Intent intent = getIntent();
+        radiusDistance = intent.getStringExtra("radius");
 
         // create an arrayList to store the restaurant's information, and display the user's chosen restaurants
 
@@ -58,6 +62,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if(v.getId() == R.id.picks_gobackBtn) {
             Intent intent = new Intent(this, NearbyRestaurants.class);
+            intent.putExtra("radius", radiusDistance);
             startActivity(intent);
         }else if (v.getId() == R.id.picks_randomizeBtn) {
             Toast.makeText(getApplicationContext(), "Randomize clicked", Toast.LENGTH_SHORT).show();
@@ -94,7 +99,7 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
     }
 
     public void openDialog(String restaurantString){
-        ExampleDialog exampleDialog = new ExampleDialog(restaurantString, this);
+        ExampleDialog exampleDialog = new ExampleDialog(restaurantString,this, radiusDistance);
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 }

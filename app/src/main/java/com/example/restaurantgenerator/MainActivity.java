@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,9 +19,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v) {
         if(v.getId() == R.id.find_a_place) {
-            Intent find_restaurant = new Intent(this, NearbyRestaurants.class);
-            startActivity(find_restaurant);
+            openDialog();
         }
+    }
+
+    public void openDialog(){
+        ExampleDialog exampleDialog = new ExampleDialog(this, "1");
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
 }
