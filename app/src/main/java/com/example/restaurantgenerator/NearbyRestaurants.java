@@ -39,6 +39,8 @@ public class NearbyRestaurants extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
 
+        this.setTitle("Choose Nearby Restaurants");
+
         // creates an instance of the database when the app launches
         db = RestaurantDb.getInstance(this);
 

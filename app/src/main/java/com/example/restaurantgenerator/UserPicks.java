@@ -28,6 +28,8 @@ public class UserPicks extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_picks); // displays user picks page
 
+        this.setTitle("Your Picks!");
+
         userGoBack = (Button)findViewById(R.id.picks_gobackBtn); // go back button
         userGoBack.setOnClickListener(this);
         randomizeBtn = (Button)findViewById(R.id.picks_randomizeBtn); // randomize button
