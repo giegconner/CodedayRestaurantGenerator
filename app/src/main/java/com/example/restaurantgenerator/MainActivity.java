@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
+//        this.setTitle("Monchies");
+
         Button findPlaceToEatButton = (Button)findViewById(R.id.find_a_place);
         findPlaceToEatButton.setOnClickListener(this);
     }

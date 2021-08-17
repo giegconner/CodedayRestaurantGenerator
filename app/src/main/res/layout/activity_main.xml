@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/btn_background"
+    >
+
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="80dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/main_name"
-        android:textColor="#7E0D3B"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        >
-    </TextView>
+        android:textColor="@color/white"
+        android:textSize="55dp"
+        android:textStyle="italic">
 
+    </TextView>
 
     <Button
         android:id="@+id/find_a_place"
@@ -29,9 +33,14 @@
         android:layout_marginRight="80dp"
         android:maxWidth="200dp"
         android:text="@string/main_find_a_place"
-        android:backgroundTint="#7E0D3B"
+        android:textColor="@color/colorComplimenttwo"
+        android:backgroundTint="@color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         >
     </Button>
+
+
 </RelativeLayout>
 
 
