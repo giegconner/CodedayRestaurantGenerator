@@ -16,9 +16,19 @@
 
     <!--    Nearby Restaurants Custom Adapter -->
     <string name="nearby_adapter_add">Add To List</string>
+    <string name="nearby_adapter_plus">+</string>
 
     <!--   User Picks Custom Adapter -->
     <string name="userpicks_adapter_delete">Delete From List</string>
+    <string name="userpicks_adapter_remove">-</string>
+
+    <!--    Alert Dialog XML -->
+    <string name="alert_button_1">5 Miles</string>
+    <string name="alert_button_2">10 Miles</string>
+    <string name="alert_button_3">15 Miles</string>
+    <string name="alert_button_custom">Custom</string>
+    <string name="alert_textView">Choose Your Distance</string>
+    <string name="alert_editText">Enter a distance (in miles)</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

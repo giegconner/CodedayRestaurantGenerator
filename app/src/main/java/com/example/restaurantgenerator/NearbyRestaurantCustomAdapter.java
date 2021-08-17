@@ -86,4 +86,5 @@ public class NearbyRestaurantCustomAdapter extends BaseAdapter implements ListAd
 
         return view;
     }
+
 }

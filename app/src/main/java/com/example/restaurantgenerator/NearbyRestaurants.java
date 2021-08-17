@@ -54,6 +54,7 @@ public class NearbyRestaurants  extends AppCompatActivity implements View.OnClic
     private ArrayList<String> restaurantCoords = new ArrayList<>();
     private Context context = this;
     private String location = "36.66717694044335,-121.65614460655894";
+    private String radiusDistance;
 
     Button listedGoBack;
     Button readyBtn;
@@ -62,6 +63,8 @@ public class NearbyRestaurants  extends AppCompatActivity implements View.OnClic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_restaurants);
+
+        this.setTitle("Choose Nearby Restaurants");
 
         // creates an instance of the database when the app launches
         db = RestaurantDb.getInstance(this);
@@ -77,9 +80,12 @@ public class NearbyRestaurants  extends AppCompatActivity implements View.OnClic
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
         }
+        Intent intent = getIntent();
+        radiusDistance = intent.getStringExtra("radius");
 
         setCurrentLocation();
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + API.key + "&location=" + location + "&radius=16000&type=restaurant";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + API.key +
+                "&location=" + location + "&radius=" + radiusDistance + "&type=restaurant";
         Log.d("NearbyRestaurants", url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -142,6 +148,7 @@ public class NearbyRestaurants  extends AppCompatActivity implements View.OnClic
         }else if(v.getId() == R.id.readyBtn){
             Toast.makeText(getApplicationContext(), "Ready clicked", Toast.LENGTH_SHORT).show();
             Intent userPicks = new Intent(NearbyRestaurants.this, UserPicks.class);
+            userPicks.putExtra("radius", radiusDistance);
             startActivity(userPicks);
         }
     }

@@ -23,7 +23,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/nearby_goBackBtn"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="#7E0D3B"
+        android:backgroundTint="@color/colorComplimenttwo"
         >
     </Button>
 
@@ -35,7 +35,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/nearby_readyBtn"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="#7E0D3B"
+        android:backgroundTint="@color/colorComplimenttwo"
         >
 
     </Button>
